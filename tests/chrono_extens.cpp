@@ -6,7 +6,7 @@
 
 #include <chrono>
 
-TEST(TsppTests, ChronoExtenTests) {
+TEST(TsppTests5, ChronoExtenTests) {
 
 
     //test chrono extensions

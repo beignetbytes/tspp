@@ -5,7 +5,7 @@
 
 #include <chrono>
 
-TEST(TsppTests, PointTests) {
+TEST(TsppTests1, PointTests) {
 
     tspp::time_series<double> time_series;
     auto epoch = std::chrono::high_resolution_clock::time_point(std::chrono::seconds(0));

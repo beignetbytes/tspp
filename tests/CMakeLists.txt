@@ -57,6 +57,6 @@ find_package(GTest REQUIRED PATHS ${GTEST_DIR})
 
 target_link_libraries(${BINARY} PRIVATE tspp::time_series)
 
-target_link_libraries(${BINARY} PRIVATE GTest::gtest pthread) #GTest::gtest_main 
+target_link_libraries(${BINARY} PUBLIC GTest::gtest pthread)
 
 add_test(NAME ${BINARY} COMMAND ${BINARY})

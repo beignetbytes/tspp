@@ -8,7 +8,7 @@
 #include <chrono>
 
 
-TEST(TsppTests, TsJoinTests) {
+TEST(TsppTests4, TsJoinTests) {
 
     auto epoch = std::chrono::high_resolution_clock::time_point(std::chrono::seconds(0));
     auto ep1 = std::chrono::high_resolution_clock::time_point(std::chrono::seconds(1));
@@ -58,7 +58,7 @@ TEST(TsppTests, TsJoinTests) {
 };
 
 
-TEST(TsppTests, TsChronoJoinTests) {
+TEST(TsppTests4, TsChronoJoinTests) {
 
     auto ep1 = std::chrono::high_resolution_clock::time_point(std::chrono::seconds(1));
     auto ep2 = std::chrono::high_resolution_clock::time_point(std::chrono::seconds(2));
@@ -180,12 +180,6 @@ TEST(TsppTests, TsChronoJoinTests) {
     ts_ma_f_exp.insert_end(std::make_pair(ep8, std::make_pair(1.0,  4.0)));
     ts_ma_f_exp.insert_end(std::make_pair(ep9, std::make_pair(1.0,  5.0)));
     ts_ma_f_exp.insert_end(std::make_pair(ep10, std::make_pair(1.0, 5.0))); 
-
-
-    tspp_tests_utilities::helper::print_ts(ts_ma_f);
-
-    tspp_tests_utilities::helper::PRINT_TEST_MESSAGE("BREAK");
-    tspp_tests_utilities::helper::print_ts(ts_ma_f_exp);
 
     EXPECT_EQ(ts_ma_f, ts_ma_f_exp);
 

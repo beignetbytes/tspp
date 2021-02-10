@@ -60,8 +60,6 @@ namespace tspp {
         };
 
         time_series(container_type<key_type> keys, container_type<value_type> values) : keys_(keys), values_(values) {
-            //keys_ = keys;
-            //values_ = values;
         };
 
         /*! copy constructor */
@@ -71,8 +69,6 @@ namespace tspp {
 
         /*! move constructor */
         time_series(time_series<T, dt_type>&& src) : keys_(std::move(src.keys_)), values_(std::move(src.values_)) {
-            //values_ = std::move(src.values_);
-            //keys_ = std::move(src.keys_);
         };
 
         /*! copy assign */

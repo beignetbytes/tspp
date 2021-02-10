@@ -19,7 +19,7 @@ struct test_t {
     };
 };
 
-TEST(TsppTests, TsBasicFuncTests) {
+TEST(TsppTests2, TsBasicFuncTests) {
 
 
     auto x1 = [](double x) -> double { return x * 2.0; };
@@ -61,8 +61,8 @@ TEST(TsppTests, TsBasicFuncTests) {
     time_series_test_t_exp.insert_end(std::make_pair(ep1, t2e));
 
 
-    
-    EXPECT_EQ(time_series_test_t, time_series_test_t_exp);
+    bool same_ts = time_series_test_t ==  time_series_test_t_exp;
+    EXPECT_TRUE(same_ts);
     EXPECT_EQ(time_series_test_t.at(epoch).to_string(), "val = 12.000000, bla= 2, meow= meow");
     EXPECT_EQ(time_series_test_t.at(ep1).to_string(), "val = 15.000000, bla= 3, meow= moo");
 
@@ -72,6 +72,6 @@ TEST(TsppTests, TsBasicFuncTests) {
     tspp::time_series<double> time_series_test_t_mod_exp;
     time_series_test_t_mod_exp.insert_end(std::make_pair(epoch, 24.0));
     time_series_test_t_mod_exp.insert_end(std::make_pair(ep1, 30.0));
-
-    EXPECT_EQ(moo2, time_series_test_t_mod_exp);
+    bool tmod = moo2 == time_series_test_t_mod_exp;
+    EXPECT_TRUE(tmod);
 };

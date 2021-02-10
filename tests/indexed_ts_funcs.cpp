@@ -7,7 +7,7 @@
 #include <numeric>
 
 
-TEST(TsppTests, TsIndexedFuncTests) {
+TEST(TsppTests3, TsIndexedFuncTests) {
 
 
     //test rolling
