@@ -11,7 +11,7 @@
 namespace tspp_examples_utilities {
 
     template<typename WORKLOAD>
-    static void BENCHMARK_WORKLOAD(std::string workload_name, int64_t nrep, const WORKLOAD& workload)
+    static void BENCHMARK_WORKLOAD(const std::string& workload_name, int64_t nrep, const WORKLOAD& workload)
     {
         clock_t start = std::clock();
         std::size_t zz = 0;
