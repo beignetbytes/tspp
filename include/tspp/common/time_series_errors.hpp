@@ -18,9 +18,9 @@ namespace tspp {
         time_series_error(const std::string& file,
                   long line,
                   const std::string& functionName,
-                  const std::string& message = "")
+                  const std::string& message = "") : message_(std::make_shared<std::string>(format(file, line, functionName, message)))
         {
-            message_ = std::make_shared<std::string>(format(file, line, functionName, message));
+
         };
 
         ~time_series_error() throw() {}

@@ -4,7 +4,6 @@
 
 #include <tspp/common/compare_extensions.hpp>
 #include <tspp/common/iterator_extensions.hpp>
-#include <tspp/common/time_series_allocator.hpp>
 #include <tspp/common/time_series_errors.hpp>
 #include <tspp/common/tspp_enums.hpp>
 
@@ -60,9 +59,9 @@ namespace tspp {
             }
         };
 
-        time_series(container_type<key_type> keys, container_type<value_type> values) {
-            keys_ = keys;
-            values_ = values;
+        time_series(container_type<key_type> keys, container_type<value_type> values) : keys_(keys), values_(values) {
+            //keys_ = keys;
+            //values_ = values;
         };
 
         /*! copy constructor */
@@ -71,9 +70,9 @@ namespace tspp {
         };
 
         /*! move constructor */
-        time_series(time_series<T, dt_type>&& src) {
-            values_ = std::move(src.values_);
-            keys_ = std::move(src.keys_);
+        time_series(time_series<T, dt_type>&& src) : keys_(std::move(src.keys_)), values_(std::move(src.values_)) {
+            //values_ = std::move(src.values_);
+            //keys_ = std::move(src.keys_);
         };
 
         /*! copy assign */
@@ -494,7 +493,7 @@ namespace tspp {
                     resdates.emplace_back(curpair.first);
                     resvals.emplace_back(func(curpair.second, priorv.value()));
                 }
-                it++;
+                ++it;
             }
             time_series<value_type, dt_type, backing_class> result(resdates, resvals);
             return result;

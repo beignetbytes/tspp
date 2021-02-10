@@ -19,7 +19,6 @@ target_include_directories(time_series INTERFACE
 
 list(APPEND tspp_headers 
 "${CMAKE_CURRENT_SOURCE_DIR}/include/tspp/time_series.hpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/include/tspp/common/time_series_allocator.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/include/tspp/common/iterator_extensions.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/include/tspp/common/time_series_errors.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/include/tspp/common/chrono_extensions.hpp"

@@ -12,7 +12,6 @@
 #include <string>
 #include <numeric>
 #include <chrono>
-//#include <deque>
 #include "parquet_tests.hpp"
 
 
