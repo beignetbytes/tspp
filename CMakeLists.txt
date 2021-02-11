@@ -48,7 +48,7 @@ if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/googletest/")
     )
     file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release)
 
-    execute_process(COMMAND cmake -Dgtest_disable_pthreads=ON ..
+    execute_process(COMMAND cmake .. -Dgtest_disable_pthreads=ON
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release
     )
 
