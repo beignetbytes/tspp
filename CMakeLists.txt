@@ -38,7 +38,7 @@ if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/arrow/")
   
 endif()
 
-set(ARROW_PARQUET_DIR "${CMAKE_SOURCE_DIR}/extern/deps/arrow/lib64/cmake/arrow/")
+set(ARROW_PARQUET_DIR "${CMAKE_SOURCE_DIR}/extern/deps/arrow/${CMAKE_INSTALL_LIBDIR}/cmake/arrow/")
 
 #pull and build googletest if needed
 if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/googletest/")
@@ -64,7 +64,7 @@ if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/googletest/")
 
 endif()
 
-set(GTEST_DIR "${CMAKE_SOURCE_DIR}/extern/deps/googletest/lib64/cmake/GTest/")
+set(GTEST_DIR "${CMAKE_SOURCE_DIR}/extern/deps/googletest/${CMAKE_INSTALL_LIBDIR}/cmake/GTest/")
 
 add_library(time_series INTERFACE)
 
