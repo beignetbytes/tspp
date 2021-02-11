@@ -1,13 +1,70 @@
 ﻿# CMakeList.txt : Top-level CMake project file, do global configuration
 # and include sub-projects here.
 #
-cmake_minimum_required (VERSION 3.2)
+cmake_minimum_required (VERSION 3.15)
 
 set(CMAKE_CXX_STANDARD 17)
 
 
 project(tspp-time-series VERSION 0.1.0 LANGUAGES CXX)
 include(GNUInstallDirs)
+
+
+# set up extern folder if it doesnt exist
+if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/depsrc/" )    
+    message(STATUS "setting up extern directory")    
+    file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc)
+endif()
+
+#pull and build arrow if needed
+if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/arrow/")
+    message(STATUS "starting arrow generate and build")
+    execute_process(COMMAND git clone https://github.com/apache/arrow.git
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc
+    )
+    file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/arrow/cpp/release)
+
+    execute_process(COMMAND cmake -DCMAKE_BUILD_TYPE=Release -DARROW_PARQUET=ON -DARROW_WITH_SNAPPY=ON -DARROW_WITH_BROTLI=ON -DARROW_WITH_ZLIB=ON ..
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/arrow/cpp/release
+    )
+
+    execute_process(COMMAND make
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/arrow/cpp/release
+    )
+
+    execute_process(COMMAND cmake --install . --prefix ${CMAKE_SOURCE_DIR}/extern/deps/arrow
+       WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/arrow/cpp/release
+    )
+  
+endif()
+
+set(ARROW_PARQUET_DIR "${CMAKE_SOURCE_DIR}/extern/deps/arrow/lib64/cmake/arrow/")
+
+#pull and build googletest if needed
+if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/extern/deps/googletest/")
+    message(STATUS "starting googletest generate and build")
+    execute_process(COMMAND git clone https://github.com/google/googletest.git
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc
+    )
+    file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release)
+
+    execute_process(COMMAND cmake ..
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release
+    )
+
+    execute_process(COMMAND make
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release
+    )
+
+    execute_process(COMMAND cmake --install . --prefix ${CMAKE_SOURCE_DIR}/extern/deps/googletest
+       WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/extern/depsrc/googletest/release
+    )
+
+
+
+endif()
+
+set(GTEST_DIR "${CMAKE_SOURCE_DIR}/extern/deps/googletest/lib64/cmake/GTest/")
 
 add_library(time_series INTERFACE)
 

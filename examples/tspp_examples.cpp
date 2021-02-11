@@ -367,7 +367,6 @@ int main()
         parquet_io_tests::test_file_load_large_load();
         parquet_io_tests::test_file_load_small();
         parquet_io_tests::test_write_file();
-
 	    std::cout << "done" << "\n";
 	    return 0;
     }

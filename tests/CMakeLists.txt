@@ -2,7 +2,7 @@
 # project specific logic here.
 #
 
-set(GTEST_DIR "/mnt/c/dev/cpp/googletest-master/out/install/WSL-GCC-Release/lib64/cmake/GTest/")
+
 
 set(BINARY ${CMAKE_PROJECT_NAME}_tests)
 enable_testing()

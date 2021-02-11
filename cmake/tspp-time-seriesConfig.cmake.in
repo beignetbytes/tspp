@@ -1,0 +1,9 @@
+# This module sets the following variables:
+# * tspp-time-series_FOUND - true if tspp-time-series found on the system
+# * tspp-time-series_INCLUDE_DIRS - the directory containing tspp-time-series headers
+@PACKAGE_INIT@
+
+if(NOT TARGET tspp::time_series)
+  include("${CMAKE_CURRENT_LIST_DIR}/tspp-time-seriesTargets.cmake")
+  get_target_property(tspp-time-series_INCLUDE_DIRS tspp::time_series INTERFACE_INCLUDE_DIRECTORIES)
+endif()

@@ -5,8 +5,6 @@
 
 #project(tspp_examples)
 
-set(ARROW_PARQUET_DIR "/mnt/c/dev/cpp/apache-arrow-2.0.0/cpp/out/install/WSL-GCC-Release/lib64/cmake/arrow/")
-
 add_executable(tspp_examples "tspp_examples.cpp" "tspp_examples.hpp" "utilities.hpp" "parquet_utils.hpp" "parquet_utils.cpp" "parquet_tests.hpp" "parquet_tests.cpp" "bencher.hpp")
 
 target_compile_features(tspp_examples PRIVATE cxx_std_17)
