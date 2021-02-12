@@ -538,7 +538,7 @@ namespace tspp {
                 }
                 else if ((*ir).first < (*il).first) {
                     result.insert_end(std::make_pair((*il).first, func((*il).second, default_value)));
-                    if (ir != ire) {
+                    if (ir != (ire - 1)) {
                         ++ir;
                     }
                     else {
@@ -570,7 +570,7 @@ namespace tspp {
                     cand_idx_func = [](other_const_iterator idx) -> other_const_iterator { return idx;  };
                     break;
                 case tspp::enums::merge_asof_mode::roll_following:
-                    cand_idx_func = [&](other_const_iterator idx) -> other_const_iterator { return idx == other.cend() ? --(other.cend()) : ++idx;  };
+                    cand_idx_func = [&](other_const_iterator idx) -> other_const_iterator { return idx == (other.cend() - 1) ? --(other.cend()) : ++idx;  };
                     break;
                 case tspp::enums::merge_asof_mode::roll_prior:
                     cand_idx_func = [&](other_const_iterator idx) -> other_const_iterator { return idx == other.cbegin() ? other.cbegin() : --idx;  };
@@ -610,14 +610,14 @@ namespace tspp {
                         break;
                     case tspp::enums::ordering::greater_than:
                         result.insert_end(std::make_pair((*il).first, func((*il).second, default_value)));
-                        if (ir != ire) {
+                        if (ir != (ire - 1)) {
                             ++il; //the first index might still be longer so we gotta keep rolling it forward even though we are out of space on the other index
                         }
                         break;
                     case tspp::enums::ordering::equal:
                         auto ir_other = comp_res.second == ir ? ir : comp_res.second;
                         result.insert_end(std::make_pair((*il).first, func((*il).second, (*ir_other).second)));
-                        if (((*il).first == (*ir).first) && ir != ire) {
+                        if (((*il).first == (*ir).first) && ir != (ire - 1)) {
                             ++ir;
                         }
                         ++il;

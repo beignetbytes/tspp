@@ -5,22 +5,23 @@
 
 #include <chrono>
 
-struct test_t {
-    float val;
-    int bla;
-    std::string meow;
 
-    bool operator==(const test_t& other) const {
-        return std::abs(val - other.val) < 0.00001  && bla == other.bla && meow == other.meow;
-    };
-
-    std::string to_string() const {
-        return "val = " + std::to_string(val) + ", bla= " + std::to_string(bla) + ", meow= " + meow;
-    };
-};
 
 TEST(TsppTests2, TsBasicFuncTests) {
+    
+    struct test_t {
+        float val;
+        int bla;
+        std::string meow;
 
+        bool operator==(const test_t& other) const {
+            return std::abs(val - other.val) < 0.00001 && bla == other.bla && meow == other.meow;
+        };
+
+        std::string to_string() const {
+            return "val = " + std::to_string(val) + ", bla= " + std::to_string(bla) + ", meow= " + meow;
+        };
+    };
 
     auto x1 = [](double x) -> double { return x * 2.0; };
     tspp::time_series<double> time_series;

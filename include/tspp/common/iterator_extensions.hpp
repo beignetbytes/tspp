@@ -24,7 +24,7 @@ namespace tspp {
         {
         public:
             using iterator_type = std::pair<Iterator1, Iterator2>;
-
+            using difference_type = typename std::iterator_traits<Iterator2>::difference_type;
             using value_type = std::pair<typename std::iterator_traits<Iterator1>::value_type, typename std::iterator_traits<Iterator2>::value_type>;
             iterator_pair(Iterator1 it1, Iterator2 it2) : it(it1, it2) {};
             explicit iterator_pair(const std::pair<Iterator1, Iterator2>& it_pair) : it(it_pair) {};
@@ -72,6 +72,20 @@ namespace tspp {
                 return (tmp);
             };
 
+            //only allow this if iterators share a difference type
+            typename std::enable_if<std::is_same<typename std::iterator_traits<Iterator1>::difference_type, typename std::iterator_traits<Iterator2>::difference_type>::value, iterator_pair<Iterator1, Iterator2>>::type operator -(difference_type n) const {
+                
+                iterator_pair<Iterator1, Iterator2> tmp(it.first - n, it.second - n);
+                return (tmp);
+            };
+
+            //only allow this if iterators share a difference type
+            typename std::enable_if<std::is_same<typename std::iterator_traits<Iterator1>::difference_type, typename std::iterator_traits<Iterator2>::difference_type>::value, iterator_pair<Iterator1, Iterator2>>::type operator +(difference_type n) const {
+
+                iterator_pair<Iterator1, Iterator2> tmp(it.first + n, it.second + n);
+                return (tmp);
+            };
+
             iterator_pair<Iterator1, Iterator2>& operator --() {
                 --it.first;
                 --it.second;
@@ -87,13 +101,14 @@ namespace tspp {
                 return (tmp);
             };
 
+
             bool operator==(const iterator_pair<Iterator1, Iterator2>& other) const {
-                bool first = *it.first == *other.it.first;
-                bool second = *it.second == *other.it.second;
+                bool first = (it.first) == (other.it.first);
+                bool second = (it.second) == (other.it.second);
                 return first && second;
             };
             bool operator!=(const iterator_pair<Iterator1, Iterator2>& other) const {
-                return !(*this == other);
+                return !((*this) == other);
             };
 
         protected:
