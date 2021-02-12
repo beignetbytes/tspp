@@ -7,6 +7,8 @@ matrix:
     - os: linux
       compiler: clang
       env:
+        - CC=clang-7
+        - CXX=clang++-7
         - CBUILD_TYPE="Release"
       
     - os: linux
