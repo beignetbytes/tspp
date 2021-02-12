@@ -6,8 +6,8 @@
 #define test_header_hpp
 
 class tspp_tests {
-public:
-    static void test_lib();
+  public:
+	static void test_lib();
 };
 // TODO: Reference additional headers your program requires here.
 #endif
